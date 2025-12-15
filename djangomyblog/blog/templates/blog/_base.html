@@ -20,6 +20,25 @@
             <nav>
                 <a href="/">Início</a>
                 <a href="/about">Sobre</a>
+                {% if user.is_authenticated %}
+                    Olá, {{ user.username }} | &nbsp;
+
+                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="
+                            background: none; 
+                            border: none; 
+                            padding: 0; 
+                            cursor: pointer; 
+                            color: #fff;
+                            font-size: inherit;
+                            text-transform: uppercase;
+                            font-weight: bold;
+                        ">Sair</button>
+                    </form>                
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                {% endif %}
             </nav>
         </header>
 

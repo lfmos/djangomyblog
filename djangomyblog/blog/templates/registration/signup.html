@@ -1,0 +1,14 @@
+{# templates/registration/signup.html #}
+
+{% extends "blog/_base.html" %}
+
+{% block content %}
+<h2>Criar conta</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Cadastrar</button>
+</form>
+
+{% endblock %}
