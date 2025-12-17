@@ -20,6 +20,16 @@
             <nav>
                 <a href="/">Início</a>
                 <a href="/about">Sobre</a>
+                {% if user.is_authenticated %}
+                Olá, {{ user.username }}
+
+                <form class="btn-logout" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Sair</button>
+                </form>
+                {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                {% endif %}
             </nav>
         </header>
 

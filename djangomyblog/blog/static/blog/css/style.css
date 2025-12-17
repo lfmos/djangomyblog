@@ -21,13 +21,13 @@ body {
     background-image: linear-gradient(rgb(0, 177, 193), rgb(0, 64, 70));
 }
 
-/* Comportamento dos links */ 
+/* Comportamento dos links */
 a {
     color: steelblue;
     text-decoration: none;
 }
 
-/* Comportamento dos links com o ponteiro sobre eles */ 
+/* Comportamento dos links com o ponteiro sobre eles */
 a:hover {
     color: orangered;
 }
@@ -39,7 +39,7 @@ a:hover {
     height: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 1096px;
+    max-width: 1440px;
     margin: auto;
 }
 
@@ -96,4 +96,25 @@ footer {
     color: white;
     text-align: center;
     padding: .5rem;
+}
+
+.btn-logout {
+    display: inline;
+    margin-left: .25rem;
+}
+
+.btn-logout button {
+    background: none;
+    border: none;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    color: #fff;
+    font-size: inherit;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-logout button:hover {
+    color: orange;
+    background-color: rgba(255, 255, 255, .35);
 }
