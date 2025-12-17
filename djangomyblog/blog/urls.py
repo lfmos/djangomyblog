@@ -1,13 +1,14 @@
 # djangomyblog\blog\urls.py
 
 from django.urls import include, path
-from .views import about, home, post_detail, signup, profile
+from .views import about, home, new_post, post_detail, signup, profile
 
 urlpatterns = [
-    path('', home),
+    path('', home, name='home'),
     path('about/', about),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', signup, name='signup'),
     path('profile/', profile),
     path('post/<int:id>/', post_detail, name='post_detail'),
+    path('new/', new_post, name='new_post'),
 ]

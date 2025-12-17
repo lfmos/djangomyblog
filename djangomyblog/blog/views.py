@@ -45,3 +45,21 @@ def signup(request):
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id, status='ON')
     return render(request, 'blog/post_detail.html', {'post': post})
+
+@login_required
+def new_post(request):
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+
+        if title and content:
+            Post.objects.create(
+                title=title,
+                content=content,
+                user=request.user,
+                status='ON'
+            )
+            return redirect("home")
+
+    return render(request, "blog/new_post.html")

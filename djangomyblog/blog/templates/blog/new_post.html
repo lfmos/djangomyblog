@@ -1,0 +1,21 @@
+{% extends "blog/_base.html" %}
+
+{% block title %}Sobre{% endblock %}
+
+{% block content %}
+
+<h2>Novo Post</h2>
+
+<form action="{% url 'new_post' %}" method="post">
+     {% csrf_token %}
+    <p>
+        <label for="title">Título:</label>
+        <input type="text" name="title" id="title" placeholder="Título do Post" required minlength="4">
+    </p>
+    <p><textarea name="content" placeholder="Escreva o artigo" required minlength="4"></textarea></p>
+    <p><button type="submit">Salvar</button></p>
+</form>
+
+
+
+{% endblock %}
