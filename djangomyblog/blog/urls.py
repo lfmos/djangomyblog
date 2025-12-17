@@ -1,7 +1,7 @@
 # djangomyblog\blog\urls.py
 
 from django.urls import include, path
-from .views import about, home, signup, profile
+from .views import about, home, post_detail, signup, profile
 
 urlpatterns = [
     path('', home),
@@ -9,5 +9,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', signup, name='signup'),
     path('profile/', profile),
-    path('post/<int:id>/', view_post, name='post_view')
+    path('post/<int:id>/', post_detail, name='post_detail'),
 ]

@@ -12,7 +12,7 @@
 {% for post in posts %}
     <article>
         <h3><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
-        <p>{{ post.content|truncatechars:50 }}</p>
+        <p>{{ post.content|truncatechars:80 }}</p>
         <small>
             Por <a href="/user/{{ post.user.id }}">{{ post.user.username }}</a>
             em {{ post.created_at }} 

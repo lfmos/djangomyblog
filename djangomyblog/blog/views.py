@@ -1,6 +1,6 @@
 # djangomyblog\blog\views.py
 
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
 from blog.models import Post
@@ -40,3 +40,8 @@ def signup(request):
         form = CustomUserCreationForm()
 
     return render(request, "registration/signup.html", {"form": form})
+
+
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id, status='ON')
+    return render(request, 'blog/post_detail.html', {'post': post})
