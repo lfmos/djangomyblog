@@ -11,6 +11,7 @@
     <button type="submit">Entrar</button>
 </form>
 
-<p>Não é cadastrado? <a href="/accounts/signup/">Clique aqui</a>!</p>
-<p>Esqueceu a senha? <a href="/accounts/password_reset">Clique aqui</a>!</p>
+<p>Não é cadastrado? <a href="{% url 'signup' %}">Clique aqui</a>!</p>
+<p>Esqueceu a senha? <a href="{% url 'password_reset' %}">Clique aqui</a>!</p>
 {% endblock %}
+

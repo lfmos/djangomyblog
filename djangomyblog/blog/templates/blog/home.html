@@ -5,8 +5,19 @@
 {% block title %}Início{% endblock %}
 
 {% block content %}
-<h2>Bem-vindo!</h2>
-<p>Esta é a página inicial.</p>
 
-<a href="https://catabits.com.br">CataBits</a>
+<h2>Posts Recentes</h2>
+<p><small>Ordenados pela data mais recente.</small></p>
+
+{% for post in posts %}
+    <article>
+        <h3><a href="/view/{{ post.id }}">{{ post.title }}</a></h3>
+        <p>{{ post.content|truncatechars:50 }}</p>
+        <small>
+            Por <a href="/user/{{ post.user.id }}">{{ post.user.username }}</a>
+            em {{ post.created_at }} 
+        </small>
+    </article>
+{% endfor %}
+
 {% endblock %}

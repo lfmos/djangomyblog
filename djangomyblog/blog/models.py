@@ -1,35 +1,49 @@
+# djangomyblog\blog\models.py
+
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
+
+STATUS_CHOICES = [
+    ('ON', 'Online'),
+    ('OFF', 'Offline'),
+    ('DEL', 'Deletado'),
+]
+
 
 class Post(models.Model):
     title = models.CharField(max_length=127)
     content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     status = models.CharField(
         max_length=3,
-        choices=[('ON', 'Online'), ('OFF', 'Offline'), ('DEL', 'Deletado')],
-        default='ON'
+        choices=STATUS_CHOICES,
+        default='ON',
+        db_index=True
     )
-    views = models.IntegerField(default=0)
-    # Reservado para uso futuro
-    metadata = models.TextField(blank=True)
+    views = models.PositiveIntegerField(default=0)
+    # JSON reservado para uso futuro
+    metadata = models.JSONField(blank=True, null=True, default=dict)
 
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     comment = models.TextField()
     status = models.CharField(
         max_length=3,
-        choices=[('ON', 'Online'), ('OFF', 'Offline'), ('DEL', 'Deletado')],
-        default='ON'
+        choices=STATUS_CHOICES,
+        default='ON',
+        db_index=True
     )
-    # Reservado para uso futuro
-    metadata = models.TextField(blank=True)
+    # JSON reservado para uso futuro
+    metadata = models.JSONField(blank=True, null=True, default=dict)
 
     def __str__(self):
-        return f'Comentário de {self.user} em {self.post.title}'
+        return f'Comentário #{self.id} por {self.user}'

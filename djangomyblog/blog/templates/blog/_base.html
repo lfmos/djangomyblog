@@ -21,23 +21,14 @@
                 <a href="/">Início</a>
                 <a href="/about">Sobre</a>
                 {% if user.is_authenticated %}
-                    Olá, {{ user.username }} | &nbsp;
+                Olá, {{ user.username }}
 
-                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                        {% csrf_token %}
-                        <button type="submit" style="
-                            background: none; 
-                            border: none; 
-                            padding: 0; 
-                            cursor: pointer; 
-                            color: #fff;
-                            font-size: inherit;
-                            text-transform: uppercase;
-                            font-weight: bold;
-                        ">Sair</button>
-                    </form>                
+                <form class="btn-logout" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Sair</button>
+                </form>
                 {% else %}
-                    <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'login' %}">Login</a>
                 {% endif %}
             </nav>
         </header>
@@ -49,7 +40,7 @@
         </main>
 
         <footer>
-            <div>© 2025 - Luis Filipe Medeiros</div>
+            <div>© 2025 - Luís FIlipe Medeiros</div>
         </footer>
 
     </div>
