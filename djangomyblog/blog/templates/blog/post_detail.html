@@ -5,13 +5,15 @@
 {% block content %}
 <h2>{{ post.title }}</h2>
 <p>
-    Por {{ post.user.username }} — {{ post.created_at|date:"d/m/Y H:i" }}
-    {% if post.user.id == user.id %}
+    <small>
+        Por {{ post.user.username }} em {{ post.created_at|date:"d/m/Y à\s H:i" }}
+        {% if post.user.id == user.id %}
         <small>
             <a href="/edit/{{ post.id }}" title="Editar Post">✏️</a>
-            <a href="/delete/{{ post.id }}" title="Apagar Post" onclick="return confirm('Term certeza que deseja apagar o Post? Isso é irreversível!')">🗑️</a>
+            <a href="{% url 'delete_post' post.id %}" title="Apagar Post" onclick="return confirm('Term certeza que deseja apagar o Post? Isso é irreversível!')">🗑️</a>
         </small>
-    {% endif %}
+        {% endif %}
+    </small>
 </p>
 <hr>
 <p>{{ post.content }}</p>

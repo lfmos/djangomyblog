@@ -63,3 +63,19 @@ def new_post(request):
             return redirect("home")
 
     return render(request, "blog/new_post.html")
+
+@login_required
+def delete_post(request, id):
+    post = get_object_or_404(
+        Post,
+        id=id,
+        status='ON'
+    )
+
+    if post.user != request.user:
+        return redirect('home')
+
+    post.status = 'DEL'
+    post.save(update_fields=['status'])
+
+    return redirect('home')

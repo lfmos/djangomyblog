@@ -10,14 +10,15 @@
 <p><small>Ordenados pela data mais recente.</small></p>
 
 {% for post in posts %}
-    <article>
-        <h3><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
-        <p>{{ post.content|truncatechars:80 }}</p>
-        <small>
-            Por <a href="/user/{{ post.user.id }}">{{ post.user.username }}</a>
-            em {{ post.created_at }} 
-        </small>
-    </article>
+<hr>
+<article>
+    <h3><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+    <p>{{ post.content|truncatechars:80 }}</p>
+    <small>
+        Por {{ post.user.username }}
+        em {{ post.created_at|date:"d/m/Y à\s H:i" }}
+    </small>
+</article>
 {% endfor %}
 
 {% endblock %}
