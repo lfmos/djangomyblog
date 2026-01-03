@@ -79,3 +79,30 @@ def delete_post(request, id):
     post.save(update_fields=['status'])
 
     return redirect('home')
+
+@login_required
+def edit_post(request, id):
+    post = get_object_or_404(
+        Post,
+        id=id,
+        status='ON'
+    )
+
+    # só o dono pode editar
+    if post.user != request.user:
+        return redirect('home')
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+
+        if title and content:
+            post.title = title
+            post.content = content
+            post.save(update_fields=['title', 'content'])
+
+            return redirect('post_detail', id=post.id)
+
+    return render(request, 'blog/edit_post.html', {
+        'post': post
+    })
