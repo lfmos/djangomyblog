@@ -1,1 +1,2 @@
-python djangomyblog/manage.py runserver
+cd djangomyblog
+python manage.py runserver
