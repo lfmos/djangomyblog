@@ -1,5 +1,5 @@
 INSERT INTO blog_post
-(title, content, created_at, user_id, status, views, metadata)
+(title, content, created_at, user_id, status, views)
 VALUES
 (
   'Por que programadores odeiam segundas-feiras?',
@@ -7,8 +7,7 @@ VALUES
   '2024-01-12 09:34:21',
   1,
   'ON',
-  42,
-  '{}'
+  42
 ),
 (
   'Python não é só uma cobra',
@@ -16,8 +15,7 @@ VALUES
   '2024-02-03 14:12:55',
   1,
   'ON',
-  128,
-  '{}'
+  128
 ),
 (
   'Café: a dependência oficial da TI',
@@ -25,8 +23,7 @@ VALUES
   '2024-01-25 08:01:10',
   1,
   'ON',
-  256,
-  '{}'
+  256
 ),
 (
   'Meu código funciona, não toque',
@@ -34,8 +31,7 @@ VALUES
   '2024-03-01 22:45:00',
   1,
   'ON',
-  73,
-  '{}'
+  73
 ),
 (
   'Bug ou feature?',
@@ -43,8 +39,7 @@ VALUES
   '2024-02-18 11:20:33',
   1,
   'ON',
-  99,
-  '{}'
+  99
 ),
 (
   'Regex: agora você tem dois problemas',
@@ -52,8 +47,7 @@ VALUES
   '2024-03-10 16:40:18',
   1,
   'ON',
-  301,
-  '{}'
+  301
 ),
 (
   'Deploy em produção na sexta',
@@ -61,8 +55,7 @@ VALUES
   '2024-01-19 17:59:59',
   1,
   'OFF',
-  12,
-  '{}'
+  12
 ),
 (
   'Console.log salvando vidas',
@@ -70,8 +63,7 @@ VALUES
   '2024-02-07 10:08:44',
   1,
   'ON',
-  187,
-  '{}'
+  187
 ),
 (
   'Framework novo toda semana',
@@ -79,8 +71,7 @@ VALUES
   '2024-03-05 13:27:06',
   1,
   'ON',
-  64,
-  '{}'
+  64
 ),
 (
   'Comentários que mentem',
@@ -88,6 +79,5 @@ VALUES
   '2024-01-30 19:15:50',
   1,
   'ON',
-  211,
-  '{}'
+  211
 );

@@ -9,11 +9,13 @@ STATUS_CHOICES = [
     ('DEL', 'Deletado'),
 ]
 
+
 class Post(models.Model):
     title = models.CharField(max_length=127)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     status = models.CharField(
         max_length=3,
         choices=STATUS_CHOICES,
@@ -22,10 +24,11 @@ class Post(models.Model):
     )
     views = models.PositiveIntegerField(default=0)
     # JSON reservado para uso futuro
-    metadata = models.JSONField(blank=True, null=True, default='{}')
+    metadata = models.JSONField(null=True, default=dict, blank=True)
 
     def __str__(self):
         return self.title
+
 
 class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -39,7 +42,7 @@ class Comment(models.Model):
         db_index=True
     )
     # JSON reservado para uso futuro
-    metadata = models.JSONField(blank=True, null=True, default='{}')
+    metadata = models.JSONField(null=True, default=dict, blank=True)
 
     def __str__(self):
         return f'Comentário #{self.id} por {self.user}'

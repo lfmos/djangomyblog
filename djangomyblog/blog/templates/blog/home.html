@@ -2,12 +2,23 @@
 
 {% extends "blog/_base.html" %}
 
-{% block title %}Início{% endblock %}
+{% block title %}Meu Blog{% endblock %}
 
 {% block content %}
 
-<h2>Bem-vindo!</h2>
-<p>Esta é a página inicial.</p>
+<h2>Posts Recentes</h2>
+<p><small>Ordenados pela data mais recente.</small></p>
 
-<a href="https://catabits.com.br">CataBits</a>
+{% for post in posts %}
+<hr>
+<article>
+    <h3><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+    <p>{{ post.content|truncatechars:80 }}</p>
+    <small>
+        Por {{ post.user.username }}
+        em {{ post.created_at|date:"d/m/Y à\s H:i" }}
+    </small>
+</article>
+{% endfor %}
+
 {% endblock %}

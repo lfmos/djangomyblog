@@ -1,0 +1,19 @@
+{% extends "blog/_base.html" %}
+
+{% block title %}Meu Blog - {{ post.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ post.title }}</h2>
+<p>
+    <small>
+        Por {{ post.user.username }} em {{ post.created_at|date:"d/m/Y à\s H:i" }}
+        {% if post.user.id == user.id %}
+        <small>
+            <a href="{% url 'edit_post' post.id %}" title="Editar Post">✏️</a>
+            <a href="{% url 'delete_post' post.id %}" title="Apagar Post" onclick="return confirm('Term certeza que deseja apagar o Post? Isso é irreversível!')">🗑️</a>
+        </small>
+        {% endif %}
+    </small>
+</p>
+<p>{{ post.content_html|safe }}</p>
+{% endblock %}

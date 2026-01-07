@@ -19,6 +19,10 @@ body {
 /* Fundo da página */
 body {
     background-image: linear-gradient(rgb(0, 177, 193), rgb(0, 64, 70));
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Comportamento dos links */
@@ -55,6 +59,11 @@ header h1 {
     margin: 0;
 }
 
+header h1 a,
+header h1 a:hover {
+    color: #fff;
+}
+
 /* Menu principal */
 header nav {
     margin-top: .5rem;
@@ -80,14 +89,48 @@ header nav a:hover {
     background-color: rgba(255, 255, 255, .35);
 }
 
+header>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header>div span {
+    padding: 0 1rem;
+}
+
 /* Conteúdo principal */
 main {
     position: relative;
-    width: 100%;
-    height: 100%;
     flex-grow: 1;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     background-color: white;
+}
+
+main table,
+main table th,
+main table td {
+    border: 1px solid grey;
+}
+
+main table th,
+main table td {
+    border: 1px dotted grey;
+    padding: .25rem .5rem;
+}
+
+main table th {
+    background-color: rgb(220, 220, 220);
+}
+
+main pre {
+    background-color: #eee;
+    padding: 1rem;
+}
+
+main code {
+    background-color: #eee;
+    padding: 0 .25rem;
 }
 
 /* Rodapé */
@@ -100,7 +143,6 @@ footer {
 
 .btn-logout {
     display: inline;
-    margin-left: .25rem;
 }
 
 .btn-logout button {

@@ -16,13 +16,20 @@
     <div id="wrap">
 
         <header>
-            <h1>📄Meu Blog</h1>
+            <div>
+                <h1><a href="/">📄Meu Blog</a></h1>
+                {% if user.is_authenticated %}
+                <span>Olá, {{ user.username }}</span>
+                {% endif %}
+            </div>
             <nav>
+
                 <a href="/">Início</a>
+                {% if user.is_authenticated %}
+                <a href="/new">Novo</a>
+                {% endif %}
                 <a href="/about">Sobre</a>
                 {% if user.is_authenticated %}
-                Olá, {{ user.username }}
-
                 <form class="btn-logout" action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
                     <button type="submit">Sair</button>
@@ -35,7 +42,7 @@
 
         <main>
             {% block content %}
-            <!-- Conteúdo da página específica -->
+            {# Conteúdo da página específica #}
             {% endblock %}
         </main>
 
