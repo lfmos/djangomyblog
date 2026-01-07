@@ -3,12 +3,14 @@
 import markdown
 import bleach
 
+# Tags permitidas ao parse Markdown para HTML
 ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS | {
     "p", "pre", "code", "h1", "h2", "h3",
     "h4", "h5", "h6", "table", "thead",
     "tbody", "tr", "th", "td", "img",
 }
 
+# Atributos de tags permitidos ao parse Markdown para HTML
 ALLOWED_ATTRIBUTES = {
     "*": ["class"],
     "a": ["href", "title", "rel"],
