@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from blog.utils.markdown import render_markdown
 from .forms import CustomUserCreationForm
-from blog.models import Post
+from blog.models import Post, Comment
 
 
 def home(request):
@@ -39,10 +39,18 @@ def post_detail(request, id):
     post = get_object_or_404(Post, id=id, status='ON')
     post.content_html = render_markdown(post.content)
 
+    comments = (
+        Comment.objects
+        .filter(status='ON')
+        .filter(post=id)
+        .select_related('user')
+        .order_by('-created_at')
+    )
+
     return render(
         request,
         "blog/post_detail.html",
-        {"post": post}
+        {"post": post, "comments": comments}
     )
 
 
@@ -108,3 +116,24 @@ def edit_post(request, id):
     return render(request, 'blog/edit_post.html', {
         'post': post
     })
+
+
+@login_required
+def comment_post(request):
+    if request.method == "POST":
+        postid = request.POST.get("postid")
+        comment_text = request.POST.get("comment", "").strip()
+
+        post = get_object_or_404(Post, id=postid, status="ON")
+
+        if comment_text:
+            Comment.objects.create(
+                comment=comment_text,
+                user=request.user,
+                post=post,
+                status="ON"
+            )
+
+        return redirect("post_detail", id=post.id)
+
+    return redirect("home")
