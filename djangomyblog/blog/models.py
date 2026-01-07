@@ -24,7 +24,7 @@ class Post(models.Model):
     )
     views = models.PositiveIntegerField(default=0)
     # JSON reservado para uso futuro
-    metadata = models.JSONField(blank=True, null=True, default=dict)
+    metadata = models.JSONField(null=True, default=dict, blank=True)
 
     def __str__(self):
         return self.title
@@ -32,8 +32,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     comment = models.TextField()
     status = models.CharField(
@@ -43,7 +42,7 @@ class Comment(models.Model):
         db_index=True
     )
     # JSON reservado para uso futuro
-    metadata = models.JSONField(blank=True, null=True, default=dict)
+    metadata = models.JSONField(null=True, default=dict, blank=True)
 
     def __str__(self):
         return f'Comentário #{self.id} por {self.user}'
